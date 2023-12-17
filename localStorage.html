@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>        
+    </head>
+    <link rel="StyleSheet" href="Style.css">
+    <body>
+        <form action="">
+            <h2>Enquiry Now</h2>
+            <label for="">Name</label>
+            <input type="text" name="uname" placeholder="Enter user name"/>
+            <label for="">Email</label>
+            <input type="text" name="email" placeholder="Enter Email Address"/>
+            <label for="">Phone</label>
+            <input type="text" name="phone" placeholder="Enter Phone number"/>
+            <label for="" style="color: red;" class="ErrorMessage"></label>
+            <button>Save</button>
+        </form>
+        <div class="main">
+           
+        </div>
+    </body>
+    <script>        
+        let form=document.querySelector('form') 
+        let main=document.querySelector(".main")
+        let ErrorMessage=document.querySelector('.ErrorMessage')               
+        form.addEventListener("submit",(e)=>{
+            let name=e.target.uname.value;
+            let Email=e.target.email.value;
+            let phone=e.target.phone.value;      
+            let CheckStatus=0;
+            
+            var userData=JSON.parse(localStorage.getItem("StudentDetails")) ?? [];
+            
+            userData.forEach((element,index)=>{                
+                if(element.Name==name)
+                {                                        
+                    ErrorMessage.innerHTML="This Name is Already Exist"                 
+                }
+                else
+                {
+                    ErrorMessage.innerHTML=""
+                    userData.push({
+                        'Name':name,
+                        'Email':Email,
+                        'Phone':phone
+                    })
+                    localStorage.setItem("StudentDetails",JSON.stringify(userData))            
+                    e.target.reset();
+                    displayData()
+                    }         
+            })            
+            e.preventDefault();
+        })
+
+        let displayData=()=>{
+            var userData=JSON.parse(localStorage.getItem("StudentDetails")) ?? [];
+            let finalData=''
+            userData.forEach((element,index) => {
+                  finalData+=
+                    `<div class="items">
+                        <span onclick='removeData(${index})'>&times;</span>
+                        <h5>Name</h5>
+                        <div>${element.Name}</div>
+                        <h5>Email</h5>
+                        <div>${element.Email}</div>
+                        <h5>Phone</h5>
+                        <div>${element.phone}</div>
+                    </div>`                
+            });
+            main.innerHTML=finalData
+        }
+
+        let removeData=(index)=>{
+            var userData=JSON.parse(localStorage.getItem("StudentDetails")) ?? [];
+            userData.splice(index,1)
+            localStorage.setItem("StudentDetails",JSON.stringify(userData))            
+            displayData()
+        }
+
+        displayData()
+    </script>
+</html>

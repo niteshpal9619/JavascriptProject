@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Counter</title>
+    </head>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            align-content: center;
+            text-align: center;
+        }
+        .Container{
+            height: 500px;
+            width: 400px;
+            background: red;   
+        }
+        .Main{
+            display: flex;
+            display: inline-block;
+        }
+        button{
+            height: 40px;
+            width: 100px;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 10px;
+            background: green;
+            color: white;
+        }
+        .dispCount{
+            height: 40px;
+            width: 500px;
+            font-weight: bold;
+            font-size: 50px;
+            border-radius: 10px;
+            color: black;
+        }
+        h3{
+            text-align: center;
+            font-size: 40px;
+        }
+    </style>
+    <body>
+        <div class="Container">
+            <div class="Main">
+                <h3>Counter App</h3>
+                <label><span class="dispCount">0</span></label>
+                <div>
+                    <button class="Increment">+</button>
+                    <button class="Decrement">-</button>
+                    <button class="Reset">Reset</button>
+                </div>
+            </div>
+        </div>        
+    </body>
+    <script>
+            let counter=0;
+            let disply=document.querySelector('.dispCount')
+            let btns=document.querySelectorAll('button')
+            btns.forEach((value)=>{
+                value.addEventListener('click',(event)=>{
+                    let SelClass=event.currentTarget.classList
+                    if (SelClass.contains("Increment")){
+                        counter=counter+1
+                    }
+                    else if (SelClass.contains("Decrement")){
+                        counter=counter-1
+                    }
+                    else{
+                        counter=0
+                    }
+                    if(counter>0){
+                        disply.textContent=counter
+                        //disply.style.color="Green"
+                    }
+                    else if(counter<0){
+                        disply.textContent=counter
+                        //disply.style.color="Red"
+                    }
+                    else{
+                        disply.textContent="0"
+                        //disply.style.color="Black"
+                    }
+                    
+                })
+                                            
+            })            
+            
+    </script>    
+</html>

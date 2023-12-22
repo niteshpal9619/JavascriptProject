@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+            }
+    
+            /* Navbar styles */
+            ul.navbar {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333;
+            }
+    
+            ul.navbar li {
+                float: left;
+            }
+    
+            ul.navbar li a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+    
+            ul.navbar li a:hover {
+                background-color: #555;
+            }
+            </style>
+    </head>
+    
+    <body>
+        <ul class="navbar">
+            <li><a href="./ColorFliker.html">Rgb</a></li>
+            <li><a href="./HexColorPicker.html">Hex Color</a></li>            
+        </ul>
+        <label style="color: red;font-size: 50px;">Selected Color : <span class="Color"></span></label>
+        <button>Click Me</button>
+    </body>
+    <script>
+        let ColorList=["rgb(235, 171, 52)","Blue","Green","rgb(211, 235, 52)"]
+        let color=document.querySelector('.Color')
+        let btnClick=document.querySelector('button')
+        btnClick.addEventListener('click',()=>{
+            let SelNumber=getRandomInt()
+            document.body.style.backgroundColor=ColorList[SelNumber]
+            color.textContent=ColorList[SelNumber]
+        })
+
+        function getRandomInt() {
+            return Math.floor(Math.random()*ColorList.length);
+        }  
+    </script>
+</html>

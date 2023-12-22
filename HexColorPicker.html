@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <a href="./ColorFliker.html">Back to Home</a>
+        <label style="color: red;font-size: 50px;">Selected Color : <span class="Color"></span></label>
+        <button>Click Me</button>
+    </body>
+    <script>
+        let ColorList=['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F']
+        let color=document.querySelector('.Color')
+        let btnClick=document.querySelector('button')
+        btnClick.addEventListener('click',()=>{
+            let ColorName="#"
+            let Numericnumber=Radomefun()
+            for(i=0;i<6;i++){
+                ColorName+=''+ColorList[Numericnumber]
+            }
+            document.body.style.backgroundColor=ColorName
+            document.textContent=ColorName
+        })
+
+        let Radomefun=()=>{
+            return Math.floor(Math.random()*ColorList.length);
+        }
+    </script>
+</html>
